@@ -30,7 +30,7 @@ class Genussladen implements Restaurant
                 /** @var \Symfony\Component\DomCrawler\Crawler $crawler */
                 $dayOfWeek = $crawler->children()->getNode(0)->textContent;
                 $wholeMenueString = $crawler->children()->getNode(1)->textContent;
-                $menues = explode("\noder\n", $wholeMenueString);
+                $menues = preg_split("/oder/i", $wholeMenueString);
                 foreach ($menues as $menuId => $menuText) {
                     $menuText = trim(preg_replace('/\s+/', ' ', $menuText));
                     if (preg_match('/(.*?) €(\d{1,2},\d{2})/mi', $menuText, $matches)) {
