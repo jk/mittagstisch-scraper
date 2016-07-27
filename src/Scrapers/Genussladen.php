@@ -33,8 +33,20 @@ class Genussladen implements Restaurant
                 $menues = preg_split("/oder/i", $wholeMenueString);
                 foreach ($menues as $menuId => $menuText) {
                     $menuText = trim(preg_replace('/\s+/', ' ', $menuText));
-                    if (preg_match('/(.*?) €(\d{1,2},\d{2})/mi', $menuText, $matches)) {
-                        $menu[] = new MenuItem($dayOfWeek . ": " . $matches[1], $matches[2]);
+                    /**
+                     * Matches
+                     * Pasta mit Gemüse und Tomatensauce€8,90
+                     * Pasta mit Gemüse und Tomatensauce €8,90
+                     * Vorspeisensalat Pasta mit Gemüse und Tomatensauce €8,90
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce €8,90
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce € 8,90
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce €  8,90
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce 8,90€
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce 8,90 €
+                     * Vorspeisensalat, Pasta mit Gemüse und Tomatensauce 8,90  €
+                     */
+                    if (preg_match('/(.*?)(\s*)((€\s*)(\d{1,2},\d{2})|(\d{1,2},\d{2})(\s*€))/mi', $menuText, $matches)) {
+                        $menu[] = new MenuItem($dayOfWeek . ": " . $matches[1], $matches[3]);
                     }
                 }
             });
