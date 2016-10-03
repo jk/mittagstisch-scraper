@@ -12,6 +12,8 @@ class Bullerei implements Restaurant
     const HOMEPAGE = 'http://bullerei.com/fuer-euch/mittagstisch';
     /** @var string Restaurant name */
     const NAME = 'Bullerei Deli';
+    const LATITUDE = 53.562973;
+    const LONGITUDE = 9.966187;
     /** @var MenuItem[]|null Menu */
     protected $menu = null;
 
@@ -84,5 +86,19 @@ class Bullerei implements Restaurant
      */
     public function getName() {
         return self::NAME;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLongitude() {
+        return self::LONGITUDE;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLatitude() {
+        return self::LATITUDE;
     }
 }

@@ -12,6 +12,8 @@ class Genussladen implements Restaurant
     const HOMEPAGE = 'http://dergenussladen.de/tagesangebote/';
     /** @var string Restaurant name */
     const NAME = 'Der Genuss Laden';
+    const LATITUDE = 50.363696;
+    const LONGITUDE = 8.736149;
     /** @var MenuItem[]|null Menu */
     protected $menu = null;
 
@@ -87,5 +89,19 @@ class Genussladen implements Restaurant
      */
     public function getName() {
         return self::NAME;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLongitude() {
+        return self::LONGITUDE;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLatitude() {
+        return self::LATITUDE;
     }
 }
