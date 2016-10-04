@@ -12,6 +12,8 @@ class Esszimmer implements Restaurant
     const HOMEPAGE = 'http://www.esszimmer-feinekost.de/';
     /** @var string Restaurant name */
     const NAME = 'Esszimmer Feinekost';
+    const LATITUDE = 53.571950;
+    const LONGITUDE = 9.958450;
     /** @var MenuItem[]|null Menu */
     protected $menu = null;
 
@@ -92,5 +94,19 @@ class Esszimmer implements Restaurant
     public function isValidMenuForToday()
     {
         return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLongitude() {
+        return self::LONGITUDE;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLatitude() {
+        return self::LATITUDE;
     }
 }

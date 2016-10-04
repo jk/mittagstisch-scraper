@@ -27,4 +27,16 @@ interface Restaurant
      * @return string Restaurant name
      */
     public function getName();
+
+    /**
+     * Get the longitude of the restaurant
+     * @return float Restaurant Longitude
+     */
+    public function getLongitude();
+
+    /**
+     * Get the latitude of the restaurant
+     * @return float Restaurant latitude
+     */
+    public function getLatitude();
 }
