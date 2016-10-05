@@ -5,7 +5,6 @@ use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
 use JK\Mittagstisch\Restaurant;
 
-
 class Bullerei implements Restaurant
 {
     /** @var string Homepage */
@@ -21,7 +20,8 @@ class Bullerei implements Restaurant
      * Scrape the restaurant website
      * @return MenuItem[]
      */
-    protected function scrape() {
+    protected function scrape()
+    {
         $client = new Client();
 
         $crawler = $client->request('GET', self::HOMEPAGE);
@@ -35,7 +35,7 @@ class Bullerei implements Restaurant
 //                echo $node->textContent . PHP_EOL . PHP_EOL;
 //                var_dump($node->textContent);
 
-                if(preg_match('/(.*?) (\d{1,2},\d{2}) € $/mi', $node->textContent, $matches)) {
+                if (preg_match('/(.*?) (\d{1,2},\d{2}) € $/mi', $node->textContent, $matches)) {
                     $menu[] = new MenuItem($matches[1], $matches[2]);
                 }
 //                var_dump($crawler);
@@ -66,7 +66,7 @@ class Bullerei implements Restaurant
      */
     public function getMenu()
     {
-        if($this->menu === null) {
+        if ($this->menu === null) {
             $this->menu = $this->scrape();
         }
 
@@ -84,21 +84,24 @@ class Bullerei implements Restaurant
     /**
      * @inheritDoc
      */
-    public function getName() {
+    public function getName()
+    {
         return self::NAME;
     }
 
     /**
      * @inheritDoc
      */
-    public function getLongitude() {
+    public function getLongitude()
+    {
         return self::LONGITUDE;
     }
 
     /**
      * @inheritDoc
      */
-    public function getLatitude() {
+    public function getLatitude()
+    {
         return self::LATITUDE;
     }
 }

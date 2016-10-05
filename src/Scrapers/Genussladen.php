@@ -5,7 +5,6 @@ use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
 use JK\Mittagstisch\Restaurant;
 
-
 class Genussladen implements Restaurant
 {
     /** @var string Homepage */
@@ -21,7 +20,8 @@ class Genussladen implements Restaurant
      * Scrape the restaurant website
      * @return MenuItem[]
      */
-    protected function scrape() {
+    protected function scrape()
+    {
         $client = new Client();
 
         $crawler = $client->request('GET', self::HOMEPAGE);
@@ -69,7 +69,7 @@ class Genussladen implements Restaurant
      */
     public function getMenu()
     {
-        if($this->menu === null) {
+        if ($this->menu === null) {
             $this->menu = $this->scrape();
         }
 
@@ -87,21 +87,24 @@ class Genussladen implements Restaurant
     /**
      * @inheritDoc
      */
-    public function getName() {
+    public function getName()
+    {
         return self::NAME;
     }
 
     /**
      * @inheritDoc
      */
-    public function getLongitude() {
+    public function getLongitude()
+    {
         return self::LONGITUDE;
     }
 
     /**
      * @inheritDoc
      */
-    public function getLatitude() {
+    public function getLatitude()
+    {
         return self::LATITUDE;
     }
 }
