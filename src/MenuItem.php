@@ -6,13 +6,14 @@ class MenuItem
     protected $label;
     protected $price;
 
-    function __construct($label, $price)
+    public function __construct($label, $price)
     {
         $this->setLabel($label);
         $this->setPrice($price);
     }
 
-    protected function sanitizeInput($input) {
+    protected function sanitizeInput($input)
+    {
         $string = str_replace(chr(194), '', $input);
         $string = str_replace(chr(160), '', $string);
         return trim($string);

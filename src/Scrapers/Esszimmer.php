@@ -5,7 +5,6 @@ use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
 use JK\Mittagstisch\Restaurant;
 
-
 class Esszimmer implements Restaurant
 {
     /** @var string Homepage */
@@ -21,7 +20,8 @@ class Esszimmer implements Restaurant
      * Scrape the restaurant website
      * @return MenuItem[]
      */
-    protected function scrape() {
+    protected function scrape()
+    {
         $client = new Client();
 
         $crawler = $client->request('GET', self::HOMEPAGE);
@@ -32,31 +32,31 @@ class Esszimmer implements Restaurant
         $found_center_aligns = 0;
         $crawler->filter('#karte > div.dbraun > div > table > tbody > tr')->each(
             function ($crawler) use (&$menu, &$found_center_aligns) {
-            if ($found_center_aligns == 2) {
-                return;
-            }
+                if ($found_center_aligns == 2) {
+                    return;
+                }
 
             /** @var \Symfony\Component\DomCrawler\Crawler $crawler */
             $node = $crawler->getNode(0);
 
-            $align = $node->getAttributeNode('align');
-            if (@$align->value == 'center') {
-                $found_center_aligns += 1;
+                $align = $node->getAttributeNode('align');
+                if (@$align->value == 'center') {
+                    $found_center_aligns += 1;
 
-                return;
-            }
+                    return;
+                }
 
-            if ($found_center_aligns != 1) {
-                return;
-            }
+                if ($found_center_aligns != 1) {
+                    return;
+                }
 
-            $td_node = $crawler->filter('td');
+                $td_node = $crawler->filter('td');
 
-            $label = $td_node->getNode(0)->textContent;
-            $price = $td_node->getNode(1)->textContent;
+                $label = $td_node->getNode(0)->textContent;
+                $price = $td_node->getNode(1)->textContent;
 
-            $menu[] = new MenuItem($label, $price);
-        });
+                $menu[] = new MenuItem($label, $price);
+            });
 
         return $menu;
     }
@@ -66,7 +66,7 @@ class Esszimmer implements Restaurant
      */
     public function getMenu()
     {
-        if($this->menu === null) {
+        if ($this->menu === null) {
             $this->menu = $this->scrape();
         }
 
@@ -84,7 +84,8 @@ class Esszimmer implements Restaurant
     /**
      * @inheritDoc
      */
-    public function getName() {
+    public function getName()
+    {
         return self::NAME;
     }
 
@@ -99,14 +100,16 @@ class Esszimmer implements Restaurant
     /**
      * @inheritDoc
      */
-    public function getLongitude() {
+    public function getLongitude()
+    {
         return self::LONGITUDE;
     }
 
     /**
      * @inheritDoc
      */
-    public function getLatitude() {
+    public function getLatitude()
+    {
         return self::LATITUDE;
     }
 }

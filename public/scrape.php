@@ -10,7 +10,8 @@ $restaurants = [
     new JK\Mittagstisch\Scrapers\Genussladen
 ];
 
-function median(array $elements) {
+function median(array $elements)
+{
     if (count($elements) == 0) {
         return 0;
     }
@@ -21,7 +22,7 @@ function median(array $elements) {
 
     sort($elements);
     $pivot = (count($elements) / 2);
-    if(count($elements) % 2 == 1) {
+    if (count($elements) % 2 == 1) {
         return $elements[$pivot - 1];
     } else {
         $lower_median = floor($pivot) - 1;
@@ -31,7 +32,8 @@ function median(array $elements) {
     }
 }
 
-function formatPrice($price, $currency_symbol = '€') {
+function formatPrice($price, $currency_symbol = '€')
+{
     return number_format($price, 2, ',', '.') . ' ' . $currency_symbol;
 }
 
@@ -58,4 +60,3 @@ foreach ($restaurants as $restaurant) {
 
     echo $headline . $menu . PHP_EOL;
 }
-
