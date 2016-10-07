@@ -7,7 +7,8 @@ use JK\Mittagstisch\Restaurant;
 $restaurants = [
     new JK\Mittagstisch\Scrapers\Esszimmer(),
     new JK\Mittagstisch\Scrapers\Bullerei(),
-    new JK\Mittagstisch\Scrapers\Genussladen
+    new JK\Mittagstisch\Scrapers\Genussladen(),
+    new JK\Mittagstisch\Scrapers\Cheers()
 ];
 
 function median(array $elements)
