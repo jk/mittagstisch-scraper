@@ -1,19 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mmenzel
- * Date: 05.10.2016
- * Time: 12:23
- */
-
 
 namespace JK\Mittagstisch\Scrapers;
 
 use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
-use JK\Mittagstisch\Restaurant;
 
-class Cheers implements Restaurant
+class Cheers extends BaseRestaurant
 {
     /** @var string Homepage */
     const HOMEPAGE = 'http://cheersbadnauheim.de/mittagstisch-2/';
@@ -21,8 +13,6 @@ class Cheers implements Restaurant
     const NAME = 'Cheers';
     const LATITUDE = 50.368085;
     const LONGITUDE = 8.747992;
-    /** @var MenuItem[]|null Menu */
-    protected $menu = null;
 
     /**
      * Scrape the restaurant website
@@ -63,57 +53,5 @@ class Cheers implements Restaurant
                 }
             });
         return $menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isValidMenuForToday()
-    {
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMenu()
-    {
-        if ($this->menu === null) {
-            $this->menu = $this->scrape();
-        }
-
-        return $this->menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getHomepage()
-    {
-        return self::HOMEPAGE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return self::NAME;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLongitude()
-    {
-        return self::LONGITUDE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLatitude()
-    {
-        return self::LATITUDE;
     }
 }
