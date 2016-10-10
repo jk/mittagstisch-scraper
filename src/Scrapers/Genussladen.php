@@ -3,9 +3,8 @@ namespace JK\Mittagstisch\Scrapers;
 
 use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
-use JK\Mittagstisch\Restaurant;
 
-class Genussladen implements Restaurant
+class Genussladen extends BaseRestaurant
 {
     /** @var string Homepage */
     const HOMEPAGE = 'http://dergenussladen.de/tagesangebote/';
@@ -13,8 +12,6 @@ class Genussladen implements Restaurant
     const NAME = 'Der Genuss Laden';
     const LATITUDE = 50.363696;
     const LONGITUDE = 8.736149;
-    /** @var MenuItem[]|null Menu */
-    protected $menu = null;
 
     /**
      * Scrape the restaurant website
@@ -54,57 +51,5 @@ class Genussladen implements Restaurant
             });
 
         return $menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isValidMenuForToday()
-    {
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMenu()
-    {
-        if ($this->menu === null) {
-            $this->menu = $this->scrape();
-        }
-
-        return $this->menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getHomepage()
-    {
-        return self::HOMEPAGE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return self::NAME;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLongitude()
-    {
-        return self::LONGITUDE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLatitude()
-    {
-        return self::LATITUDE;
     }
 }

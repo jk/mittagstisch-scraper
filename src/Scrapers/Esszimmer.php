@@ -3,9 +3,8 @@ namespace JK\Mittagstisch\Scrapers;
 
 use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
-use JK\Mittagstisch\Restaurant;
 
-class Esszimmer implements Restaurant
+class Esszimmer extends BaseRestaurant
 {
     /** @var string Homepage */
     const HOMEPAGE = 'http://www.esszimmer-feinekost.de/';
@@ -13,8 +12,6 @@ class Esszimmer implements Restaurant
     const NAME = 'Esszimmer Feinekost';
     const LATITUDE = 53.571950;
     const LONGITUDE = 9.958450;
-    /** @var MenuItem[]|null Menu */
-    protected $menu = null;
 
     /**
      * Scrape the restaurant website
@@ -59,57 +56,5 @@ class Esszimmer implements Restaurant
             });
 
         return $menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMenu()
-    {
-        if ($this->menu === null) {
-            $this->menu = $this->scrape();
-        }
-
-        return $this->menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getHomepage()
-    {
-        return self::HOMEPAGE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return self::NAME;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isValidMenuForToday()
-    {
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLongitude()
-    {
-        return self::LONGITUDE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLatitude()
-    {
-        return self::LATITUDE;
     }
 }

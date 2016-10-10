@@ -3,9 +3,8 @@ namespace JK\Mittagstisch\Scrapers;
 
 use Goutte\Client;
 use JK\Mittagstisch\MenuItem;
-use JK\Mittagstisch\Restaurant;
 
-class Bullerei implements Restaurant
+class Bullerei extends BaseRestaurant
 {
     /** @var string Homepage */
     const HOMEPAGE = 'http://bullerei.com/fuer-euch/mittagstisch';
@@ -13,8 +12,6 @@ class Bullerei implements Restaurant
     const NAME = 'Bullerei Deli';
     const LATITUDE = 53.562973;
     const LONGITUDE = 9.966187;
-    /** @var MenuItem[]|null Menu */
-    protected $menu = null;
 
     /**
      * Scrape the restaurant website
@@ -51,57 +48,5 @@ class Bullerei implements Restaurant
             });
 
         return $menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isValidMenuForToday()
-    {
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMenu()
-    {
-        if ($this->menu === null) {
-            $this->menu = $this->scrape();
-        }
-
-        return $this->menu;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getHomepage()
-    {
-        return self::HOMEPAGE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return self::NAME;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLongitude()
-    {
-        return self::LONGITUDE;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLatitude()
-    {
-        return self::LATITUDE;
     }
 }
