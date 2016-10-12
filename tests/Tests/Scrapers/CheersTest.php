@@ -1,22 +1,21 @@
 <?php
 namespace JK\Mittagstisch\Scrapers\Tests;
 
-use JK\Mittagstisch\Scrapers\Bullerei;
+use JK\Mittagstisch\Scrapers\Cheers;
 
-class BullereiTest extends \PHPUnit_Framework_TestCase
+class CheersTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Bullerei */
+    /** @var Cheers */
     private $instance;
 
     public function setUp()
     {
-        $this->instance = new Bullerei();
+        $this->instance = new Cheers();
     }
 
     public function testInstance()
     {
         $this->assertInstanceOf('JK\Mittagstisch\Scrapers\BaseRestaurant', $this->instance);
-        /* @todo check for restaurant interface implementation */
     }
 
     public function testGetHomepage()

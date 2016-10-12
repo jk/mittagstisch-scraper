@@ -15,21 +15,21 @@ class MenuItemTest extends \PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        static::assertInstanceOf('JK\Mittagstisch\MenuItem', $this->instance);
+        $this->assertInstanceOf('JK\Mittagstisch\MenuItem', $this->instance);
     }
 
     public function testGetLabel()
     {
-        static::assertEquals('Menüname', $this->instance->getLabel());
+        $this->assertEquals('Menüname', $this->instance->getLabel());
     }
 
     public function testGetPrice()
     {
-        static::assertEquals('7.77', $this->instance->getPrice());
+        $this->assertEquals('7.77', $this->instance->getPrice());
     }
 
     public function testToString()
     {
-        static::assertEquals('Menüname 7.77', $this->instance);
+        $this->assertEquals('Menüname 7.77', $this->instance);
     }
 }
